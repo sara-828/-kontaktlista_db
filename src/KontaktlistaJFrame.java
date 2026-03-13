@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class KontaktlistaJFrame extends javax.swing.JFrame {
     
      //Kontakt[] kontaktlista = new Kontakt[100];
-     ArrayList<Kontakt> konList = new ArrayList<>(); // skapar arraylista 
+     //ArrayList<Kontakt> konList = new ArrayList<>(); // skapar arraylista 
      FileManager list = new FileManager(); 
-     
+     DbManager db = new DbManager();
      //int räknare = 0;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KontaktlistaJFrame.class.getName());
@@ -198,7 +198,11 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         }
         else{
             Kontakt kon = new Kontakt(förnamn,efternamn,telefonnummer); // skapar ny kontakt
-            konList.add(kon);
+            //konList.add(kon);
+            
+            
+            
+            
         if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
             this.textA.setText("");
             for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med förnamn först
@@ -238,14 +242,14 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         konList = FileManager.readFromFile(); //hämtar
         this.textA.setText("");  
        
-         for( int i = 0; i<konList.size(); i++){
-            this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-         }
+         //for( int i = 0; i<konList.size(); i++){
+          //  this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
+         //}
     }//GEN-LAST:event_btnHämtaActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         // TODO add your handling code here:
-        list.saveToFile(konList); //sparar
+        //list.saveToFile(konList); //sparar
     }//GEN-LAST:event_btnSparaActionPerformed
 
     /**
