@@ -27,7 +27,7 @@ public class DbManager {
      *
      */
     public DbManager() {
-        String url = "jdbc:mysql://localhost:3306/"; // som mysql värde
+        String url = "jdbc:mysql://localhost:3306/"; // som mysql värde jdbc mysql
         String dbName = "kontaktlista";// namn på databas
         String userName = "kontaktlista"; // användarnamn
         String password = "kontaktlista";
@@ -54,20 +54,21 @@ public class DbManager {
      * @return non zero value on succsessfull insert, zero value on none
      * succsessful insert.
      */
-    /*public int insert(Kontakt kontakt) {
+    public int insert(Kontakt kontakt) {
         int res = 0;
 
         // Check for active connection, not written yet
         //if (connected()) {
             try {
-                String sql = "insert into tabellnamn(egenskap1, egenskap2)"
-                        + " VALUES (?, ?)";
+                String sql = "insert into kontakt(firstname, lastname, phonenumber)"
+                        + " VALUES (?, ?, ?)";
                 PreparedStatement stmt
                         = conn.prepareStatement(sql);
 
                 // Set Parameters
-                stmt.setString(1, kontakt.getEgenskap1());
-                stmt.setInt(4, kontakt.getEgenskap2());
+                stmt.setString(1, kontakt.getFörnamn());
+                stmt.setString(2, kontakt.getEfternamn());
+                stmt.setString(3, kontakt.getTelefonnummer());
 
                 // Execute SQL query
                 res = stmt.executeUpdate();
@@ -78,7 +79,7 @@ public class DbManager {
         //}
         return res;
     }
-*/
+
         /**
      * Metod for retriveing all the records in the database
      *

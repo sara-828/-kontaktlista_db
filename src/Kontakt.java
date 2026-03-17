@@ -39,7 +39,7 @@ public String getFörnamn(){
 public String getEfternamn(){
     return this.efternamn;
 }
-public String setTelefonnummer(){
+public String getTelefonnummer(){
     return this.telefonnummer;
 }
 

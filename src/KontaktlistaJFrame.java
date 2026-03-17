@@ -175,11 +175,11 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private void rbtnEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEfternamnActionPerformed
         // TODO add your handling code here:
          this.textA.setText("");             // tömmer textarean
-         for( int i = 0; i<konList.size(); i++){
+         //for( int i = 0; i<konList.size(); i++){
             /*this.textA.append(kontaktlista[i].getEfternamn() + "\t" +kontaktlista[i].getFörnamn() + "\t" + kontaktlista[i].setTelefonnummer() +"\n");
         */
-            this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n"); // skriver ut kontakter i textfältet
-         }
+            //this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n"); // skriver ut kontakter i textfältet
+         //}
     }//GEN-LAST:event_rbtnEfternamnActionPerformed
 
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
@@ -192,33 +192,29 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         this.tbxTelefonnummer.setText("");
         
         
-        
         if(förnamn.contentEquals("")&&efternamn.contentEquals("")&&telefonnummer.contentEquals("")){        // skapar ingen kontakt om alla textboxar är tomma 
-            
         }
         else{
             Kontakt kon = new Kontakt(förnamn,efternamn,telefonnummer); // skapar ny kontakt
+            db.insert(kon);
             //konList.add(kon);
-            
-            
-            
-            
+             
         if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
             this.textA.setText("");
-            for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med förnamn först
-                this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-            }
+            //for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med förnamn först
+                //this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
+            //}
             
         }else{ 
             this.textA.setText("");
-            for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med efternamn först
-                this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
+            //for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med efternamn först
+               // this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
                 /*
             }
             /*kontaktlista[räknare] = new Kontakt(förnamn,efternamn,telefonnummer);
         this.textA.append(kontaktlista[räknare].getEfternamn()+ "\t" +kontaktlista[räknare].getFörnamn()+"\t"+kontaktlista[räknare].setTelefonnummer() +"\n");
         räknare++;*/
-        }
+       // }
                 }
        
        
@@ -230,16 +226,17 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
         // TODO add your handling code here:
         this.textA.setText("");             // tömmer textarean
-         for( int i = 0; i<konList.size(); i++){/*
+         //for( int i = 0; i<konList.size(); i++){
+             /*
              this.textA.append(kontaktlista[i].getFörnamn() + "\t" +kontaktlista[i].getEfternamn() + "\t" + kontaktlista[i].setTelefonnummer()+"\n");
        */
-            this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-         }
+            //this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
+         //}
     }//GEN-LAST:event_rbtnFörnamnActionPerformed
 
     private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
         // TODO add your handling code here:
-        konList = FileManager.readFromFile(); //hämtar
+        //konList = FileManager.readFromFile(); //hämtar
         this.textA.setText("");  
        
          //for( int i = 0; i<konList.size(); i++){
@@ -275,6 +272,13 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new KontaktlistaJFrame().setVisible(true));
+    }
+    
+    private void skrivUtFörnamn(){
+        this.textA.setText("");
+    }
+    private void skrivUtEfternamn(){
+        this.textA.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
