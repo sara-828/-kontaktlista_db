@@ -1,5 +1,6 @@
 
-import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,8 +13,6 @@ import java.util.ArrayList;
  */
 public class KontaktlistaJFrame extends javax.swing.JFrame {
     
-     //Kontakt[] kontaktlista = new Kontakt[100];
-     //ArrayList<Kontakt> konList = new ArrayList<>(); // skapar arraylista 
      FileManager list = new FileManager(); 
      DbManager db = new DbManager();
      //int räknare = 0;
@@ -175,11 +174,23 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private void rbtnEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEfternamnActionPerformed
         // TODO add your handling code here:
          this.textA.setText("");             // tömmer textarean
-         //for( int i = 0; i<konList.size(); i++){
-            /*this.textA.append(kontaktlista[i].getEfternamn() + "\t" +kontaktlista[i].getFörnamn() + "\t" + kontaktlista[i].setTelefonnummer() +"\n");
-        */
-            //this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n"); // skriver ut kontakter i textfältet
-         //}
+         
+         ResultSet rs = db.getAllData();
+          if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.textA.append(rs.getInt("kontaktid") + "\t"
+                            + rs.getString("lastname") + "\t"
+                            + rs.getString("firstname") + "\t"
+                            + rs.getString("phonenumber") + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Ingen data.");
+            }
+        } else {
+              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
+         
     }//GEN-LAST:event_rbtnEfternamnActionPerformed
 
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
@@ -197,41 +208,35 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         else{
             Kontakt kon = new Kontakt(förnamn,efternamn,telefonnummer); // skapar ny kontakt
             db.insert(kon);
-            //konList.add(kon);
              
         if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
-            this.textA.setText("");
-            //for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med förnamn först
-                //this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-            //}
-            
+            skrivUtFörnamn();
         }else{ 
-            this.textA.setText("");
-            //for( int i = 0; i<konList.size(); i++){ // skriver ut i textarean med efternamn först
-               // this.textA.append(konList.get(i).getEfternamn()+ "\t" +konList.get(i).getFörnamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-                /*
-            }
-            /*kontaktlista[räknare] = new Kontakt(förnamn,efternamn,telefonnummer);
-        this.textA.append(kontaktlista[räknare].getEfternamn()+ "\t" +kontaktlista[räknare].getFörnamn()+"\t"+kontaktlista[räknare].setTelefonnummer() +"\n");
-        räknare++;*/
-       // }
+            skrivUtEfternamn();
                 }
-       
-       
         }
-       
         
     }//GEN-LAST:event_btnLäggTillActionPerformed
 
     private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
         // TODO add your handling code here:
         this.textA.setText("");             // tömmer textarean
-         //for( int i = 0; i<konList.size(); i++){
-             /*
-             this.textA.append(kontaktlista[i].getFörnamn() + "\t" +kontaktlista[i].getEfternamn() + "\t" + kontaktlista[i].setTelefonnummer()+"\n");
-       */
-            //this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-         //}
+        ResultSet rs = db.getAllData();
+          if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.textA.append(rs.getInt("kontaktid") + "\t"
+                            + rs.getString("firstname") + "\t"
+                            + rs.getString("lastname") + "\t"
+                            + rs.getString("phonenumber") + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Ingen data.");
+            }
+        } else {
+              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
+        
     }//GEN-LAST:event_rbtnFörnamnActionPerformed
 
     private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
@@ -239,9 +244,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         //konList = FileManager.readFromFile(); //hämtar
         this.textA.setText("");  
        
-         //for( int i = 0; i<konList.size(); i++){
-          //  this.textA.append(konList.get(i).getFörnamn()+ "\t" +konList.get(i).getEfternamn()+"\t"+konList.get(i).setTelefonnummer() +"\n");
-         //}
     }//GEN-LAST:event_btnHämtaActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
@@ -276,9 +278,41 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     
     private void skrivUtFörnamn(){
         this.textA.setText("");
+        ResultSet rs = db.getAllData();
+          if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.textA.append(rs.getInt("kontaktid") + "\t"
+                            + rs.getString("firstname") + "\t"
+                            + rs.getString("lastname") + "\t"
+                            + rs.getString("phonenumber") + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Ingen data.");
+            }
+        } else {
+              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
+
     }
     private void skrivUtEfternamn(){
         this.textA.setText("");
+        
+        ResultSet rs = db.getAllData();
+          if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.textA.append(rs.getInt("kontaktid") + "\t"
+                            + rs.getString("lastname") + "\t"
+                            + rs.getString("firstname") + "\t"
+                            + rs.getString("phonenumber") + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Ingen data.");
+            }
+        } else {
+              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
