@@ -138,7 +138,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnHämta)
                             .addComponent(btnSpara))
-                        .addContainerGap(52, Short.MAX_VALUE))
+                        .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
@@ -160,7 +160,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                     .addComponent(btnLäggTill)
                     .addComponent(btnHämta))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnFörnamn)
@@ -174,22 +174,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private void rbtnEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEfternamnActionPerformed
         // TODO add your handling code here:
          this.textA.setText("");             // tömmer textarean
-         
-         ResultSet rs = db.getAllData();
-          if (rs != null) {
-            try {
-                while (rs.next()) {
-                    this.textA.append(rs.getInt("kontaktid") + "\t"
-                            + rs.getString("lastname") + "\t"
-                            + rs.getString("firstname") + "\t"
-                            + rs.getString("phonenumber") + "\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Ingen data.");
-            }
-        } else {
-              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
-        }
+         skrivUtEfternamn();
          
     }//GEN-LAST:event_rbtnEfternamnActionPerformed
 
@@ -221,28 +206,20 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
         // TODO add your handling code here:
         this.textA.setText("");             // tömmer textarean
-        ResultSet rs = db.getAllData();
-          if (rs != null) {
-            try {
-                while (rs.next()) {
-                    this.textA.append(rs.getInt("kontaktid") + "\t"
-                            + rs.getString("firstname") + "\t"
-                            + rs.getString("lastname") + "\t"
-                            + rs.getString("phonenumber") + "\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Ingen data.");
-            }
-        } else {
-              System.out.println("Ingen data från databasen, kontrollera anslutningen.");
-        }
+        skrivUtFörnamn();
         
     }//GEN-LAST:event_rbtnFörnamnActionPerformed
 
     private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
         // TODO add your handling code here:
         //konList = FileManager.readFromFile(); //hämtar
-        this.textA.setText("");  
+        //this.textA.setText("");  
+        if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
+            skrivUtFörnamn();
+        }else{ 
+            skrivUtEfternamn();
+                }
+        
        
     }//GEN-LAST:event_btnHämtaActionPerformed
 
