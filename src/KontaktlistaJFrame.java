@@ -38,6 +38,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
 
         rbtnGroup = new javax.swing.ButtonGroup();
         btnTaBort = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tbxEfternamn = new javax.swing.JTextField();
@@ -51,8 +52,12 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         btnLäggTill = new javax.swing.JButton();
         btnHämta = new javax.swing.JButton();
         btnSpara = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        txfDelete = new javax.swing.JTextField();
 
         btnTaBort.setText("ta bort kontakt");
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +109,20 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        txfDelete.setText("jTextField1");
+        txfDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,9 +130,13 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(rbtnFörnamn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(rbtnEfternamn)
-                .addGap(126, 126, 126))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDelete)
+                .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +183,13 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                     .addComponent(btnLäggTill)
                     .addComponent(btnHämta))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnFörnamn)
-                    .addComponent(rbtnEfternamn))
+                    .addComponent(rbtnEfternamn)
+                    .addComponent(btnDelete)
+                    .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -227,6 +252,17 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //list.saveToFile(konList); //sparar
     }//GEN-LAST:event_btnSparaActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String o = txfDelete.getText();
+        
+        db.delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txfDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,10 +329,12 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHämta;
     private javax.swing.JButton btnLäggTill;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -308,5 +346,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tbxFörnamn;
     private javax.swing.JTextField tbxTelefonnummer;
     private javax.swing.JTextArea textA;
+    private javax.swing.JTextField txfDelete;
     // End of variables declaration//GEN-END:variables
 }

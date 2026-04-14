@@ -123,5 +123,21 @@ public class DbManager {
         }
 
     }*/
+    
+    public void delete(){
+        int res = 0;
+        
+        try{
+        String sql = "DELETE FROM kontakt WHERE kontaktid = 7";
+        
+        PreparedStatement stmt
+                        = conn.prepareStatement(sql);
+        res = stmt.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e.getMessage() + " Error!");
+        }
+        
+        //return res;
+    }
 
 }
