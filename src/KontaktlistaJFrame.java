@@ -39,6 +39,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         rbtnGroup = new javax.swing.ButtonGroup();
         btnTaBort = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnSpara = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tbxEfternamn = new javax.swing.JTextField();
@@ -51,13 +52,19 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         tbxTelefonnummer = new javax.swing.JTextField();
         btnLäggTill = new javax.swing.JButton();
         btnHämta = new javax.swing.JButton();
-        btnSpara = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         txfDelete = new javax.swing.JTextField();
 
         btnTaBort.setText("ta bort kontakt");
 
         jButton1.setText("jButton1");
+
+        btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,13 +109,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSpara.setText("Spara");
-        btnSpara.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSparaActionPerformed(evt);
-            }
-        });
-
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
             }
         });
 
-        txfDelete.setText("jTextField1");
         txfDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfDeleteActionPerformed(evt);
@@ -133,7 +132,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(rbtnEfternamn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
                 .addGap(55, 55, 55))
@@ -158,9 +157,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                             .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLäggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHämta)
-                            .addComponent(btnSpara))
+                        .addComponent(btnHämta)
                         .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,9 +171,8 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSpara))
-                .addGap(32, 32, 32)
+                    .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,9 +251,16 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String o = txfDelete.getText();
+        String idText = txfDelete.getText();
+        int id = Integer.valueOf(idText);
         
-        db.delete();
+        db.delete(id);
+        
+         if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
+            skrivUtFörnamn();
+        }else{ 
+            skrivUtEfternamn();
+                }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txfDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfDeleteActionPerformed

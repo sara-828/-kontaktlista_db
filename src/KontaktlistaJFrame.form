@@ -14,6 +14,14 @@
         <Property name="text" type="java.lang.String" value="jButton1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JButton" name="btnSpara">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Spara"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSparaActionPerformed"/>
+      </Events>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -43,7 +51,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="rbtnEfternamn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="txfDelete" min="-2" max="-2" attributes="0"/>
+              <Component id="txfDelete" min="-2" pref="82" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -73,10 +81,7 @@
                           <Component id="btnLäggTill" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnHämta" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnHämta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -96,9 +101,8 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tbxEfternamn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tbxFörnamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tbxTelefonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -195,14 +199,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnH&#xe4;mtaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSpara">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Spara"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSparaActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
@@ -212,9 +208,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txfDelete">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfDeleteActionPerformed"/>
       </Events>

@@ -124,11 +124,13 @@ public class DbManager {
 
     }*/
     
-    public void delete(){
+    public void delete(int id){
         int res = 0;
+        int  idnummer = id;
+        
         
         try{
-        String sql = "DELETE FROM kontakt WHERE kontaktid = 7";
+        String sql = "DELETE FROM kontakt WHERE kontaktid = " + idnummer;
         
         PreparedStatement stmt
                         = conn.prepareStatement(sql);
