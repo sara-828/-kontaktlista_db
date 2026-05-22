@@ -24,6 +24,12 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
      */
     public KontaktlistaJFrame() {
         initComponents();
+        // skriver ut kontakter
+         if(rbtnFörnamn.isSelected()){
+            skrivUtFörnamn();
+        }else{ 
+            skrivUtEfternamn();
+                }
         
     }
 
@@ -51,7 +57,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tbxTelefonnummer = new javax.swing.JTextField();
         btnLäggTill = new javax.swing.JButton();
-        btnHämta = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         txfDelete = new javax.swing.JTextField();
 
@@ -102,23 +107,10 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnHämta.setText("Hämta");
-        btnHämta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHämtaActionPerformed(evt);
-            }
-        });
-
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
-            }
-        });
-
-        txfDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfDeleteActionPerformed(evt);
             }
         });
 
@@ -131,37 +123,34 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                 .addComponent(rbtnFörnamn)
                 .addGap(18, 18, 18)
                 .addComponent(rbtnEfternamn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete)
-                .addGap(55, 55, 55))
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(383, 383, 383))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(109, 109, 109)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLäggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addComponent(btnHämta)
-                        .addContainerGap(57, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
+                                .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLäggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,21 +160,25 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLäggTill))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLäggTill)
-                    .addComponent(btnHämta))
+                    .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnFörnamn)
-                    .addComponent(rbtnEfternamn)
-                    .addComponent(btnDelete)
-                    .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtnFörnamn)
+                            .addComponent(rbtnEfternamn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete)
+                            .addComponent(txfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -193,14 +186,13 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtnEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEfternamnActionPerformed
-        // TODO add your handling code here:
-         this.textA.setText("");             // tömmer textarean
-         skrivUtEfternamn();
+        this.textA.setText("");             // tömmer textarean
+        skrivUtEfternamn();
          
     }//GEN-LAST:event_rbtnEfternamnActionPerformed
 
     private void btnLäggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLäggTillActionPerformed
-        // TODO add your handling code here:
+        // hämtar från textboxarna
         String förnamn = this.tbxFörnamn.getText(); // läser av textboxen
         this.tbxFörnamn.setText("");                // tömmer textboxen
         String efternamn = this.tbxEfternamn.getText();
@@ -209,7 +201,7 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         this.tbxTelefonnummer.setText("");
         
         
-        if(förnamn.contentEquals("")&&efternamn.contentEquals("")&&telefonnummer.contentEquals("")){        // skapar ingen kontakt om alla textboxar är tomma 
+        if(förnamn.contentEquals("")&&efternamn.contentEquals("")&&telefonnummer.contentEquals("")){ // skapar ingen kontakt om alla textboxar är tomma 
         }
         else{
             Kontakt kon = new Kontakt(förnamn,efternamn,telefonnummer); // skapar ny kontakt
@@ -225,47 +217,28 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLäggTillActionPerformed
 
     private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
-        // TODO add your handling code here:
         this.textA.setText("");             // tömmer textarean
         skrivUtFörnamn();
         
     }//GEN-LAST:event_rbtnFörnamnActionPerformed
 
-    private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
-        // TODO add your handling code here:
-        //konList = FileManager.readFromFile(); //hämtar
-        //this.textA.setText("");  
-        if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
-            skrivUtFörnamn();
-        }else{ 
-            skrivUtEfternamn();
-                }
-        
-       
-    }//GEN-LAST:event_btnHämtaActionPerformed
-
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // TODO add your handling code here:
         //list.saveToFile(konList); //sparar
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+
+        
         String idText = txfDelete.getText();
         int id = Integer.valueOf(idText);
-        
         db.delete(id);
         
-         if(rbtnFörnamn.isSelected()){ // om förnamn först är vald
+         if(rbtnFörnamn.isSelected()){ 
             skrivUtFörnamn();
         }else{ 
             skrivUtEfternamn();
                 }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void txfDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +265,8 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new KontaktlistaJFrame().setVisible(true));
     }
     
-    private void skrivUtFörnamn(){
+    //skriver ut förnamnet först
+    private void skrivUtFörnamn(){ 
         this.textA.setText("");
         ResultSet rs = db.getAllData();
           if (rs != null) {
@@ -311,7 +285,8 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
         }
 
     }
-    private void skrivUtEfternamn(){
+    //skriver ut efternamnet först
+    private void skrivUtEfternamn(){ 
         this.textA.setText("");
         
         ResultSet rs = db.getAllData();
@@ -333,7 +308,6 @@ public class KontaktlistaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnHämta;
     private javax.swing.JButton btnLäggTill;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;

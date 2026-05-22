@@ -124,6 +124,7 @@ public class DbManager {
 
     }*/
     
+    // metod för att radera en kontakt
     public void delete(int id){
         int res = 0;
         int  idnummer = id;
